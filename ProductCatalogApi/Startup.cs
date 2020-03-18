@@ -30,6 +30,9 @@ namespace ProductCatalogApi
 
             // create an instance of CatalogContext, pass the options
             // options is use sqlserver and the db location is in the appsettings.json file by ConnectionString
+            // here is a delegate, delegate is running a secondary thread
+            // so can't call Seed() here because by the time call seed the sql service 
+            // might not be ready yet
             services.AddDbContext<CatalogContext>(options => 
                 options.UseSqlServer(Configuration["ConnectionString"]));
         }

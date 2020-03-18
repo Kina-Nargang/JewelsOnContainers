@@ -65,7 +65,10 @@ namespace ProductCatalogApi.Data
                     .HasMaxLength(100);
 
                 e.Property(c => c.Price)
-                    .IsRequired();
+                    .IsRequired()
+                    // for running Add-Migration error
+                    // Microsoft.EntityFrameworkCore.Model.Validation[30000]
+                    .HasColumnType("decimal(18,2)");
 
                 // 1 : many relationship with foreignkey CatalogTypeId
                 e.HasOne(c => c.CatalogType)
