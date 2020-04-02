@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebMVC.services;
+using WebMVC.ViewModels;
 
 namespace WebMVC.Controllers
 {
@@ -22,15 +23,29 @@ namespace WebMVC.Controllers
 
         // under the Catalog folder there should be a page called Index
         // user will tell us the page number
-        public async Task<IActionResult> Index(int page)
+        // int? means page could be null
+        public async Task<IActionResult> Index(int? page)
         {
             var itemOnPage = 10;
 
             // _service is CatalogService class
-            var catalog = await _service.GetCatalogItemsAsync(page, itemOnPage);
+            // page ?? 0 means if page is null then let page = 0
+            // page ?? 0 => page == null ? 0 : page
+            var catalog = await _service.GetCatalogItemsAsync(page ?? 0, itemOnPage);
+            var vm = new CatalogIndexViewModel
+            {
+                CatalogItems = catalog.Data,
+                PaginationInfo = new PaginationInfo
+                {
+                    ActualPage = page ?? 0,
+                    ItemsPerPage = itemOnPage,
+                    TotalItems = catalog.Count,
+                    TotalPages = (int)Math.Ceiling((decimal)catalog.Count / itemOnPage)
+                }
+            };
 
-            // pass the data(catalog) to the view
-            return View(catalog);
+            // pass the data(vm) to the view
+            return View(vm);
         }
     }
 }

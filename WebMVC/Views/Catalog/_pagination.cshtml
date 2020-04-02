@@ -1,0 +1,36 @@
+﻿ @*this page get data from WebMVC.ViewModels.PaginationInfo*@
+@model WebMVC.ViewModels.PaginationInfo
+
+<div class="esh-pager">
+    <div class="container">
+        <article class="esh-pager-wrapper row">
+            <nav>
+                <a class="esh-pager-item esh-pager-item--navigable @Model.Previous"
+                   id="Previous"
+                   @*when click Previous when take user to Catalog controller*@ 
+                   asp-controller="Catalog"
+                   @*excute the Index action*@ 
+                   asp-action="Index"
+                   @*pass the parameter to Index action. asp-route-page*@ 
+                   @*asp-route-page's page should match Index parameter's name*@ 
+                   asp-route-page="@(Model.ActualPage -1)"
+                   aria-label="Previous">
+                    Previous
+                </a>
+
+                <span class="esh-pager-item">
+                    Showing @Model.ItemsPerPage of @Model.TotalItems products - Page @(Model.ActualPage + 1) - @Model.TotalPages
+                </span>
+
+                <a class="esh-pager-item esh-pager-item--navigable @Model.Next"
+                   id="Next"
+                   asp-controller="Catalog"
+                   asp-action="Index"
+                   asp-route-page="@(Model.ActualPage + 1)"
+                   aria-label="Next">
+                    Next
+                </a>
+            </nav>
+        </article>
+    </div>
+</div>
