@@ -5,7 +5,7 @@
 This is a full-stack online shopping project.</br> 
 Create microservices by using C#.
 
-## challenges
+## Challenges
 1. How to define the boundaries of each microservices
 2. How to create queries that retrieve data from several microservices
 3. How to achieve consistency across multiple microservices
