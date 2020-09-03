@@ -13,10 +13,10 @@ Create microservices by using C#.
 
 ## Design
 1. Microservices:</br>
-  -- catalog
-  -- cart
-  -- order
-  -- token
+  -- catalog</br>
+  -- cart</br>
+  -- order</br>
+  -- token</br>
 
 
 
