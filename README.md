@@ -4,6 +4,7 @@
 
 This is a full-stack online shopping project.</br> 
 Create microservices by using C#.
+ASP.Net Core Web Application
 
 ## Challenges
 1. How to define the boundaries of each microservices
